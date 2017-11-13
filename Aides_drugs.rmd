@@ -18,7 +18,7 @@ cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
 
 Three new preventative aides drugs were tested in clinical trials in 2015. The trial designs were modeled after the famous RV_144 Aides Trials in Tailand in 2009.  Analyze and report on the apparent effectiveness of the three different drugs. Does sex of the participant seem to be a factor for any of the drugs?
 
-Introduction: 
+# Introduction
 
 The Aides Trials are clinical trials that were conducted in 2015 to see the effectiveness of three new preventative drugs. This was based off of the RV_144 aids trials from 2010 in Thailand. The data is only looking at the 2015 trials. The study is based on whether the drug was taken or if a placebo was given, whether the person has aids or not and whether they are male or female. 
 
