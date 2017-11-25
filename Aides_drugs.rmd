@@ -23,6 +23,36 @@ Three new preventative aides drugs were tested in clinical trials in 2015. The t
 
 We will subset the data by sex to see if the drug is sex specific.
 
+Results
+
+Graphical Results 
+
+Drug vs. Sex barchart(South Carolina): 
+
+```{r}
+barchartGC(~group+sex, data = Scarolina, type = "percent", main = "Drug vs. Sex (Scarolina)")
+```
+
+After looking at the graphical data, males and females are equal whether they took the drug or took the placebo. 
+
+Numerical Results
+
+The rowPerc function from tigerstats will be used to create a two-way table to look at the data numerically.
+
+Drug vs. Sex two-way table (South Carolina):
+
+```{r}
+data(Scarolina)
+SouthCarolina <- xtabs(~group+sex, data = Scarolina)
+rowPerc(SouthCarolina)
+```
+
+Of those in the drug group, 50% were male and 50% were female.
+Of those in the placebo group, 50% were male and 50% were female. 
+
+Inferential Results 
+
+
 
 # Central Africa
 
