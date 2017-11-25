@@ -20,7 +20,7 @@ Three new preventative aides drugs were tested in clinical trials in 2015. The t
 
 # Methods 
 
-The data for the Aides Trials is large having about 14,000 observations and 4 variables. I will be only looking at two variables, group and sex for this report. There are three sets of data divided by region, South Carolina, Central Africa and Korea. Korea has 4,924 observations, South Carolina has 4,400 observations and Central Africa has 4,924 observations. 
+The data for the Aides Trials is large having 13,856 observations and 4 variables. I will be only looking at two variables, group and sex for this report. There are three sets of data divided by region, South Carolina, Central Africa and Korea. Korea has 4,924 observations, South Carolina has 4,400 observations and Central Africa has 4,924 observations. 
 
 Variable analysis: 
 
