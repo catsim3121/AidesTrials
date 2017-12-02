@@ -12,6 +12,7 @@ require(dplyr)
 Scarolina<-read.csv(file="south_carolina_aides.csv",header=TRUE)
 korea<-read.csv(file="korea_aides.csv",header=TRUE)
 cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
+source("MakeData.R")
 ```
 
 #Instructions
@@ -27,32 +28,56 @@ Results
 
 Graphical Results 
 
-Drug vs. Sex barchart(South Carolina): 
+Infected vs. Group barchart(South Carolina): 
 
 ```{r}
-barchartGC(~group+sex, data = Scarolina, type = "percent", main = "Drug vs. Sex (Scarolina)")
+ScarolinaM_table <- xtabs(~infected+group, data = ScarolinaM)
+barchartGC(ScarolinaM_table, type = "percent", main = "Infected vs. Group (Male)")
+ScarolinaF_table <- xtabs(~infected+group, data = ScarolinaF)
+barchartGC(ScarolinaF_table, type = "percent", main = "Infected vs. Group (Female)")
 ```
 
-After looking at the graphical data, males and females are equal whether they took the drug or took the placebo. 
+ There seems to be a relationship between sex and the effectiveness of the drug. Males are more likely to acquire aids while on the drug. They are about evenly distributed when it comes to not acquiring aids whether they are taking the drug or the placebo. Females are more likely to acquire aids while on the placebo. They are also evenly distributed when it comes to not being infected when they are taking the drug or placebo. 
 
 Numerical Results
 
 The rowPerc function from tigerstats will be used to create a two-way table to look at the data numerically.
 
-Drug vs. Sex two-way table (South Carolina):
+Infected vs. Group two-way table (South Carolina):
 
 ```{r}
-data(Scarolina)
-SouthCarolina <- xtabs(~group+sex, data = Scarolina)
-rowPerc(SouthCarolina)
+ScarolinaM_table <- xtabs(~infected+group, data = ScarolinaM)
+rowPerc(ScarolinaM_table)
+ScarolinaF_table <- xtabs(~infected+group, data = ScarolinaF)
+rowPerc(ScarolinaF_table)
 ```
 
-Of those in the drug group, 50% were male and 50% were female.
-Of those in the placebo group, 50% were male and 50% were female. 
+Of those in the aids male group, 57.35% had aids while taking the drug, 42.65% had aids while taking the placebo. 
+Of those in the none male group, 49.52% were not infected while taking the drug, 50.48% were not infected while taking the placebo. 
+Of those in the aids female group, 38.83% had aids while taking the drug, 61.17% had aids while taking the placebo. 
+Of those in the none female group, 50.55% were not infected while taking the drug, 49.45% were not infected while taking the placebo. 
 
 Inferential Results 
 
+Now the chisqtestGC function from tigerstats will be used to run the two chi-square tests. Both tests will be runned with the assumption that there is no relationship between sex and the effectiveness of the drug. 
 
+ Scarolina Infected vs. Group chi-square test: 
+ 
+ H0: The effectiveness of the drug is independant of sex. 
+ 
+ Ha: The effectivness of the drug and sex are related. 
+
+```{r}
+chisqtestGC(ScarolinaM_table)
+```
+
+Our P-value is 0.0926. This means the probability of getting a sample like this under these conditions when the null hypothesis is true is about nine percent. This is above the threshold which is typically five percent. since the P-value is high, we will fail to reject the null hypothesis and conclude that there is no relationship between sex and the effectiveness of the drug. 
+
+```{r}
+chisqtestGC(ScarolinaF_table)
+```
+
+The P-value is 0.0264. This means the probability of getting sample under these conditions when the null hypothesis is true, is about two percent. This is below the threshold which is typically five percent. Since the P-value is too low, we will reject the null hypothesis and conclude that there is a relationship between sex and the effectiveness of the drug. 
 
 # Central Africa
 
