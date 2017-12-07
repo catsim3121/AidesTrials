@@ -12,6 +12,7 @@ require(dplyr)
 Scarolina<-read.csv(file="south_carolina_aides.csv",header=TRUE)
 korea<-read.csv(file="korea_aides.csv",header=TRUE)
 cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
+source("MakeData.R")
 ```
 
 #Instructions
@@ -28,7 +29,59 @@ We will subset the data by sex to see if the drug is sex specific.
 
 We will subset the data by sex to see if the drug is sex specific.
 
+Results 
 
+Graphical Results 
+
+Infected vs. Group barchart (Central Africa): 
+
+```{r}
+cenAfricaM_table <- xtabs(~infected+group, data = cenAfricaM)
+barchartGC(cenAfricaM_table, type = "percent", main = "Infected vs. Group (Male)") 
+cenAfricaF_table <- xtabs(~infected+group, data = cenAfricaF)
+barchartGC(cenAfricaF_table, type = "percent", main = "Infected vs. Group (Female)") 
+```
+
+There seems to be a relationship between sex and the effectiveness of the drug. Males are more likely to acquire aids while on the placebo. They are evenly distributed when it come to not acquireing aids whether they are taking the drug or the placebo. Females are also more likely to acquire aids while on the palcebo. They also have a lower chance than males to acquire aids while taking the drug.They are about evenly distributed when it comes to not being infected when they are taking the drug or placebo. 
+
+Numerical Results
+
+The rowPerc funtion from tigerstats will be used to create a two-way table to look at the data numerically. 
+
+Infected vs. Group two-way table (Central Africa): 
+
+```{r}
+cenAfricaM_table <- xtabs(~infected+group, data = cenAfricaM)
+rowPerc(cenAfricaM_table)
+cenAfricaF_table <- xtabs(~infected+group, data = cenAfricaF)
+rowPerc(cenAfricaF_table)
+```
+
+Of those in the aids male group, 49.47% had aids while taking the drug, 50.53% had aids while taking the placebo. 
+Of those in the none male group, 50.02% were not infected while taking the drug, 50.48% were not infected while taking the palcebo. 
+Of those in the aids female group, 46.55% had aids while taking the drug, 53.45% had aids while taking the placebo. 
+Of those in the none female group, 50.17% were not infected while taking the drug, 49.83% were not infected while taking the placebo. 
+
+Inferential Results 
+
+Now the chisqtestGC function from tigerstats will be used to run the two chi-square tests. BOth tests will be runned with the asumption that there is no relationship between sex and the effectiveness of the drug. 
+
+CenAfrica Infected vs. Group chi-square test: 
+
+H0: The effectiveness of the drug is independant of sex. 
+Ha: The effectivness of the drug and sex are related. 
+
+```{r}
+chisqtestGC(cenAfricaM_table)
+```
+
+Our P-value is 1. This means the probability of getting a sample like this under these conditions when the null hypothesis is true is 100%. This is above the threshold which is typically five perent. Since the p-value is high, we will fail to reject the null hypothessis and conclude there is no relationship between sex and the effectiveness of the drug. 
+
+```{r}
+chisqtestGC(cenAfricaF_table)
+```
+
+OUr P-value is 0.5055. This means the probability of getting a sample like this under these conditions when the null hypothesis is true is 50.5%. This is  above the threshold which is typically five percent. Since the p-value is high, we will fail to rejcet the null hypothesis and conclude there is no relationship between sex and the effectiveness of the drug. 
 
 # Korea
 
