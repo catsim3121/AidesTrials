@@ -53,8 +53,11 @@ rowPerc(ScarolinaF_table)
 ```
 
 Of those in the aids male group, 57.35% had aids while taking the drug, 42.65% had aids while taking the placebo. 
+
 Of those in the none male group, 49.52% were not infected while taking the drug, 50.48% were not infected while taking the placebo. 
+
 Of those in the aids female group, 38.83% had aids while taking the drug, 61.17% had aids while taking the placebo. 
+
 Of those in the none female group, 50.55% were not infected while taking the drug, 49.45% were not infected while taking the placebo. 
 
 Inferential Results 
@@ -71,13 +74,13 @@ Now the chisqtestGC function from tigerstats will be used to run the two chi-squ
 chisqtestGC(ScarolinaM_table)
 ```
 
-Our P-value is 0.0926. This means the probability of getting a sample like this under these conditions when the null hypothesis is true is about nine percent. This is above the threshold which is typically five percent. since the P-value is high, we will fail to reject the null hypothesis and conclude that there is no relationship between sex and the effectiveness of the drug. 
+Our P-value is 0.0926. This means the probability of getting a sample like this under these conditions when the null hypothesis is true is about nine percent. This is above the threshold which is typically five percent. since the P-value is high, we will fail to reject the null hypothesis and conclude that there is no relationship between sex and the effectiveness of the drug when referring to males. 
 
 ```{r}
 chisqtestGC(ScarolinaF_table)
 ```
 
-The P-value is 0.0264. This means the probability of getting sample under these conditions when the null hypothesis is true, is about two percent. This is below the threshold which is typically five percent. Since the P-value is too low, we will reject the null hypothesis and conclude that there is a relationship between sex and the effectiveness of the drug. 
+The P-value is 0.0264. This means the probability of getting sample under these conditions when the null hypothesis is true, is about two percent. This is below the threshold which is typically five percent. Since the P-value is too low, we will reject the null hypothesis and conclude that there is a relationship between sex and the effectiveness of the drug when referring to females. 
 
 # Central Africa
 
