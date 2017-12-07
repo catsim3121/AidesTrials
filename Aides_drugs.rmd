@@ -12,6 +12,7 @@ require(dplyr)
 Scarolina<-read.csv(file="south_carolina_aides.csv",header=TRUE)
 korea<-read.csv(file="korea_aides.csv",header=TRUE)
 cenAfrica<-read.csv(file="central_africa_aides.csv",header=TRUE)
+source("MakeData.R")
 ```
 
 #Instructions
@@ -34,8 +35,60 @@ We will subset the data by sex to see if the drug is sex specific.
 
 We will subset the data by sex to see if the drug is sex specific.
 
+Results 
+
+Graphical Results 
+
+Infected vs. Group barchart (Korea): 
+
+```{r}
+koreaM_table <- xtabs(~infected+group, data = koreaM)
+barchartGC(koreaM_table, type = "percent", main = "Infected vs. Group (Male)")
+koreaF_table <- xtabs(~infected+group, data = koreaF)
+barchartGC(koreaF_table, type = "percent", main = "Infected vs. Group (Female)")
+```
+
+There seems to be a relationisip between sex and the effectiveness of the drug. Males are more likely to acquire aids while taking the placebo. They are about evenly distributed when it comes to not acquiring aids whether they took the drug or the placebo (drug is slightly higher). Unlike the males, females are more likely to acquire aids while they are taking the drug. They are about evenly distributed when it comes to not being infected with when they are taking the drug or the placebo. 
 
 
+Numerical Results 
 
+The rowPerc function from tigerstats will be used to create a two-way table to look at the data numerically. 
 
+Infected vs. Group two-way table (Korea): 
 
+```{r}
+koreaM_table <- xtabs(~infected+group, data = koreaM)
+rowPerc(koreaM_table)
+koreaF_table <- xtabs(~infected+group, data = koreaF)
+rowPerc(koreaF_table)
+```
+
+Of those in the aids male group, 32.68% had aids while taking the drug, 67.32% had aids while taking the placebo. 
+
+Of those in the none male group, 51.25% were not infected while taking the drug, 48.75% were not infected while taking the placebo. 
+
+Of those in the aids female group, 65.43% had aids while taking the drug, 34.57% had aids while taking the placebo. 
+
+Of those in the none female group, 49.43% were not infected while taking the drug, 50.57% were not infected while taking the placebo. 
+
+Inferential Results 
+
+Now the chisqtestGC function from tigerstats will be used to run the two chi-square tests. Both tests will be runned with the assumption that there is no relationship between sex and the effetiveness of the drug. 
+
+Korea Infected vs. Group chi-square test: 
+
+H0: The effectiveness of the drug is independant of sex 
+Ha: The effectiveness of the drug and sex are related
+
+```{r}
+chisqtestGC(koreaM_table)
+```
+
+The P-value is 0. This means the probability of getting a sample like this under these conditions when the null hypothesis is true is about zero percent. This is below the threshold which is typicaly five percent. Since the P-value is low, we will reject the null hypothesis and conclude that there is a relationship between sex and the effectivness of the drug when referring to males. 
+
+```{r}
+chisqtestGC(koreaF_table)
+```
+
+The P-value is 0.0066. This means the probability of getting a sample like this under these conditions when the null hypothesis is true is about 0.66%. This is below the threshold which is typically five percent. Since the P-value is low, we will reject the null hypothesis and conclude that there is a relationship between sex and the effectiveness of the drug when referring to females. 
