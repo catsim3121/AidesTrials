@@ -35,7 +35,20 @@ We will subset the data by sex to see if the drug is sex specific.
 We will subset the data by sex to see if the drug is sex specific.
 
 
+#Discussion and Conclusion 
 
+After viewing the results graphically, numerically, and running chi-sqare tests on the data, we can conclude the following: 
 
+-South Carolina males and the effectivness of the drug are not related.   
 
+-South Carolina females and the effectiveness of the drug are related. They are more likely to not have aids while taking the drug. 
 
+-Central Africa sex and the effectiveness of the drug are not related for both sex groups. 
+
+-Korea sex and effectiveness are related for both  sex groups. They are more likely to not have aids while taking the drug. 
+
+If we were to make a profile of those where sex affects the effectiveness of the drug, we might say they would likely not be South Carolina males, Central Africa males and Central Africa females. 
+
+If we were to make a profile of those where sex does not affect the effectiveness of the drug, we might say they would likely be South Carolina males, Central Africa males and Central Africa females. 
+
+So without taking other variables into account, it appears that there is a relationship between South Carolina females, Korea males and Korea females when compared to the effectiveness of the drug. I would reccommend for a 32 year old female the South Carolina drug or the Korea drug. For a 27 year old male I would reccommend the Korea drug. 
